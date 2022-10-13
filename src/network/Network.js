@@ -1,12 +1,12 @@
 const POLYGON = {
-    chainId: "0x13881",
-    chainName: "Mumbai",
-    rpcUrls: ["https://rpc-mumbai.maticvigil.com/"],
+    chainId: "0x3E9",
+    chainName: "Klaytn",
+    rpcUrls: ["https://api.baobab.klaytn.net:8651/"],
     nativeCurrency: {
-        name: "Matic",
-        symbol: "MATIC",
+        name: "Klaytn",
+        symbol: "KLAY",
         decimals: 18,
     },
-    blockExplorerUrls: ["https://mumbai.polygonscan.com"],
+    blockExplorerUrls: ["https://baobab.scope.klaytn.com"],
 } 
 export { POLYGON };

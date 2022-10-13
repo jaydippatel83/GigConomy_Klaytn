@@ -205,7 +205,7 @@ function CreateProductModal(props) {
                   fullWidth
                   name="price"
                   type="number"
-                  label="Price (in MATIC)"
+                  label="Price (in KLAY)"
                   {...formik.getFieldProps("price")}
                   error={Boolean(formik.touched.price && formik.errors.price)}
                   helperText={formik.touched.price && formik.errors.price}

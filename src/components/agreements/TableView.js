@@ -36,8 +36,7 @@ function TableView(props) {
       );
       let agreAddress = await agreementContract.getAgreementByParties(
         account
-      );
-
+      ); 
       setContractAddressList(agreAddress.slice().reverse());
 
       // Set up event listener for factory contract
@@ -59,7 +58,7 @@ function TableView(props) {
 
   // Load contract data when component loads
   useEffect(() => {
-    getAllContracts(props.currentAccount);
+    getAllContracts(props.currentAccount); 
   }, [props.currentAccount, getAllContracts]);
 
   return (

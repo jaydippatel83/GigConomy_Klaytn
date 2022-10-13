@@ -91,26 +91,25 @@ export const ProfileDetails = (props) => {
       noValidate
       {...props}
     >
-      <ToastContainer />
-      <Stack direction="row" spacing={3} style={{ justifyContent: 'center', display: 'flex' }} >
-        <Badge
-          overlap="circular"
-          anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-          badgeContent={
-            <label htmlFor="icon-button-file">
-              <Input accept="image/*" id="icon-button-file" type="file" onChange={onChangeAvatar} />
-              <IconButton color="primary" aria-label="upload picture" component="span">
-                <PhotoCamera />
-              </IconButton>
-            </label>
-          }
-        >
-          <Avatar sx={{ width: 100, height: 100 }} src={avatar ? avatar : "/images/log.png"} />
-        </Badge>
-
-      </Stack>
-      <Card   >
+       <ToastContainer /> 
+     <Card   >
         <CardContent>
+          <Stack direction="row" spacing={3} style={{ justifyContent: 'center', display: 'flex',marginBottom:'30px' }} >
+            <Badge
+              overlap="circular"
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
+              badgeContent={
+                <label htmlFor="icon-button-file">
+                  <Input accept="image/*" id="icon-button-file" type="file" onChange={onChangeAvatar} />
+                  <IconButton color="primary" aria-label="upload picture" component="span">
+                    <PhotoCamera />
+                  </IconButton>
+                </label>
+              }
+            >
+              <Avatar sx={{ width: 100, height: 100 }} src={avatar ? avatar : "/images/log.png"} />
+            </Badge> 
+          </Stack>
 
           <Grid
             container

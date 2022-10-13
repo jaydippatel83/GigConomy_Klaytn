@@ -27,6 +27,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import SendTable from "src/components/payments/SendTable";
 import RequestTable from "src/components/payments/RequestTable";
+import Web3 from "web3";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -97,22 +98,18 @@ function SendRequest() {
     setOpen(false);
   };
 
-  const getWalletBalence = () => {
-    (async () => {
-      const provider = new ethers.providers.JsonRpcProvider(
-        `https://twilight-icy-glitter.matic-testnet.quiknode.pro/${process.env.REACT_APP_QUICKNODE_KEY}/`
-      );
-      const bal = await provider.getBalance(
-        user?.attributes.ethAddress,
-        "latest"
-      );
-      console.log(bal, "balance");
-      setBalance(parseFloat(ethers.utils.formatEther(bal)).toFixed(2));
-    })();
+  const getWalletBalence = async() => {
+
+    let web = new Web3(`https://api.baobab.klaytn.net:8651`); 
+    let klay = await web.eth.getBalance(user && user?.attributes?.ethAddress); 
+
+    setBalance(parseFloat(ethers.utils.formatUnits(klay, 18)).toFixed(2));
+     
+      // setBalance(parseFloat(ethers.utils.formatEther(bal)).toFixed(2)); 
   };
 
   useEffect(() => {
-    // getWalletBalence();
+    getWalletBalence();
     setData();
   }, [data, isUpdated, user]);
 
@@ -180,13 +177,13 @@ function SendRequest() {
         >
           <Button variant="outlined">
             <img
-              src="/images/logo1.png"
+              src="https://s2.coinmarketcap.com/static/img/coins/64x64/4256.png"
               width={20}
               height={20}
               alt=""
               style={{ marginRight: "10px" }}
             />{" "}
-            {balance} MATIC
+            {balance} KLAY
           </Button>
         </Stack>
 

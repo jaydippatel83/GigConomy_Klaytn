@@ -38,7 +38,7 @@ function SendTable({ sendData }) {
               <TableRow>
                 <TableCell>{send.from}</TableCell>
                 <TableCell>{send.to}</TableCell>
-                <TableCell>{send.token}</TableCell>
+                <TableCell>{send.token == "ONE" ? "KLAY" : send.token}</TableCell>
                 <TableCell>{send.amount}</TableCell>
                 <TableCell>{send.message}</TableCell>
                 <TableCell>

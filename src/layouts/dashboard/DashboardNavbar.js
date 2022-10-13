@@ -82,9 +82,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
           direction="row"
           alignItems="center"
           spacing={{ xs: 0.5, sm: 1.5 }}
-        >
-          <AccountPopover />
-
+        > 
           <Button onClick={() => openTransak()}>Fiat On-Ramp</Button>
 
           <NotificationsPopover></NotificationsPopover>
@@ -93,7 +91,7 @@ export default function DashboardNavbar({ onOpenSidebar }) {
             <Button onClick={() => authenticate()}>Connect</Button>
           ) : (
             <p style={{ color: "black", textOverflow: "ellipsis" }}>
-              {user && user.attributes.username}
+            <AccountPopover />  {user && user.attributes.username}
             </p>
           )}
 

@@ -200,7 +200,7 @@ function CreateAgreementModal(props) {
                 name="price"
                 id="price"
                 type="number"
-                label="Price (in MATIC)"
+                label="Price (in KLAY)"
                 //   required
                 // onChange={priceHandler}
                 // value={price}

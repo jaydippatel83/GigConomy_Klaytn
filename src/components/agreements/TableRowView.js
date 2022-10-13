@@ -24,7 +24,7 @@ function TableRowView(props) {
                     Stake Amount
                 </Typography>
                 <Typography gutterBottom variant="body2" color="text.secondary" >
-                    {stakeAmount.toFixed(4)}  ({per}% of {props.amount} MATIC)
+                    {stakeAmount.toFixed(4)}  ({per}% of {props.amount} KLAY)
                 </Typography>
                 <Typography gutterBottom variant="h6" component="h2">
                     Stake

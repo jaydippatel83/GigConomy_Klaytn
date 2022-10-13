@@ -269,7 +269,7 @@ function CreateSubscribtionModal(props) {
                         {...formik.getFieldProps("token")}
                       >
                         <MenuItem value="ETH">ETH</MenuItem>
-                        <MenuItem value="MATIC">MATIC</MenuItem>
+                        <MenuItem value="KLAY">KLAY</MenuItem>
                         <MenuItem value="USDT">USDT</MenuItem>
                         <MenuItem value="USDC">USDC</MenuItem>
                       </Select>
@@ -288,7 +288,7 @@ function CreateSubscribtionModal(props) {
                         {...formik.getFieldProps("network")}
                       >
                         <MenuItem value="ethereum">Ethereum</MenuItem>
-                        <MenuItem value="polygon">Polygon</MenuItem>
+                        <MenuItem value="Klaytn">Klaytn</MenuItem>
                       </Select>
                     </FormControl>
                   </Grid>

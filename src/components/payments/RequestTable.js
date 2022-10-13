@@ -12,33 +12,37 @@ import {
   TableRow,
   TableBody,
   Paper,
+  CircularProgress,
 } from "@mui/material";
-import { useMoralis,useWeb3Transfer ,useMoralisCloudFunction} from "react-moralis"; 
+import { useMoralis, useWeb3Transfer, useMoralisCloudFunction } from "react-moralis";
 import { useState } from "react";
 import { ethers } from "ethers";
 
 function RequestTable({ requestData }) {
 
-  const { user ,Moralis} = useMoralis();
-  const [userAddress, setUserAddress]= useState('');
-  const [ reqFrom, setReqform]= useState('');
-  const { data, isLoading } = useMoralisCloudFunction("getAllUser");  
+  const { user, Moralis } = useMoralis();
+  const [userAddress, setUserAddress] = useState('');
+  const [reqFrom, setReqform] = useState('');
+  const { data, isLoading } = useMoralisCloudFunction("getAllUser");
+  const [loading, setLoading] = useState(false);
 
 
-  const handleSendPayment=async(add)=>{ 
+  const handleSendPayment = async (add) => {
+    setLoading(true)
     const allUser = JSON.parse(JSON.stringify(data));
-    const u = allUser.filter((e)=>e.username === add.from); 
-    u.map(async(e)=>{  
+    const u = allUser.filter((e) => e.username === add.from);
+    u.map(async (e) => {
       await Moralis.enableWeb3();
       const options = {
-          type: "native",
-          amount: Moralis.Units.ETH(add.amount, "18"),
-          receiver: e.ethAddress,
-          contractAddress: "0x0000000000000000000000000000000000001010",
+        type: "native",
+        amount: Moralis.Units.ETH(add.amount, "18"),
+        receiver: e.ethAddress,
+        contractAddress: "0x0000000000000000000000000000000000001010",
       }
-      let result = await Moralis.transfer(options);  
-    }) ;  
-  } 
+      let result = await Moralis.transfer(options);
+    });
+    setLoading(false);
+  }
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -67,7 +71,7 @@ function RequestTable({ requestData }) {
               <TableRow>
                 <TableCell>{request.from}</TableCell>
                 <TableCell>{request.to}</TableCell>
-                <TableCell>{request.token}</TableCell>
+                <TableCell>{request.token == "ONE" ? "KLAY" : request.token}</TableCell>
                 <TableCell>{request.amount}</TableCell>
                 <TableCell>{request.message}</TableCell>
                 <TableCell>
@@ -80,10 +84,10 @@ function RequestTable({ requestData }) {
                       size="large"
                       //   type="submit"
                       variant="contained"
-                      onClick={()=>handleSendPayment(request)}
+                      onClick={() => handleSendPayment(request)}
                       style={{ marginTop: "30px" }}
                     >
-                      Pay
+                      {loading ? <CircularProgress /> : "Pay"}
                     </Button>
                   ) : (
                     ""

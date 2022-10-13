@@ -178,7 +178,7 @@ function Invoices() {
                         <TableCell>{invoice.dueDate}</TableCell>
                         <TableCell>{invoice.name}</TableCell>
                         <TableCell>{invoice.price}</TableCell>
-                        <TableCell>{invoice.token}</TableCell>
+                        <TableCell>{invoice.token == "ONE" ? "KLAY" : invoice.token}</TableCell>
                         <TableCell>{invoice.note}</TableCell>
                         <TableCell>
                           <Button

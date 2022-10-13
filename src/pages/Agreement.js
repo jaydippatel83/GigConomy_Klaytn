@@ -35,53 +35,7 @@ function Agreement() {
   const [loading, setLoading] = React.useState(false);
   const [contract, setContract] = React.useState();
   const [isUpdate, setIsUpdate] = React.useState(false);
-
  
-
-  useEffect(() => {
-    callBiconomy();
-  }, [isUpdate]);
-
-  async function callBiconomy() {
-    const maticProvider =
-      `https://polygon-mumbai.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_KEY}`;
-
-    await window.ethereum
-      .enable()
-      .then(() => {
-        try {
-          const web3 = new Web3(window.ethereum);  
-          let options = {
-            walletProvider: window.ethereum,
-            apiKey: process.env.REACT_APP_BICONOMY_KEY,
-            strictMode: true, 
-            debug: true,
-          };
-          const biconomy = new Biconomy(window.ethereum, options);
-          const getWeb3 = new Web3(biconomy);
-          biconomy
-            .onEvent(biconomy.READY, () => { 
-              console.log(getWeb3, "getWeb3");
-            })
-            .onEvent(biconomy.ERROR, (error, message) => {
-              console.error(error, "err");
-            });
-
-          let contract = new getWeb3.eth.Contract(
-            AgreementContractAbi,
-            AgreementAddress
-          ); 
-          setContract(contract);
-        } catch (error) {
-          console.log(error), "catch errr";
-        }
-      })
-      .catch((error) => {
-        console.log(error, "connection");
-      });
-  }
-  // This web3 instance is used to read normally and write to contract via meta transactions.
-  // web3 = new Web3(biconomy);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -96,67 +50,41 @@ function Agreement() {
   };
 
   const createAgreement = async (data) => { 
-    setLoading(true);
-    const formattedPrice = ethers.utils.parseEther(data.price);
-   
-    try { 
-      let tx = await contract.methods
-        .agreementCreate(
-          data.buyerAddress,
-          data.sellerAddress,
-          formattedPrice,
-          data.stakePercentBuyer.toString(),
-          data.stakePercentSeller.toString(),
-          data.title,
-          data.description
-        )
-        .send({ from: user?.attributes.ethAddress }); 
-        console.log(tx,"transaction");
-      handleClose(); 
+    setLoading(true); 
+
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+
+    const agreementContract = new ethers.Contract(
+      AgreementAddress,
+      AgreementContractAbi,
+      signer
+    );
+
+    let txn;
+
+    try {
+      const formattedPrice = ethers.utils.parseEther(data.price.toString());
+      txn = await agreementContract.agreementCreate(
+        data.buyerAddress,
+        data.sellerAddress,
+        formattedPrice,
+        data.stakePercentBuyer.toString(),
+        data.stakePercentSeller.toString(),
+        data.title,
+        data.description
+      );
+      await txn.wait();
+
+      console.log(txn, "transaction");
+      toast.success("success");
       setLoading(false);
-      toast.success("Successfully contract created!!");
-      setIsUpdate(!isUpdate);
-    } catch (err) { 
-      toast.error("Something want wrong!!",err); 
+      handleClose();
+    } catch (err) {
       setLoading(false);
+      console.log(err);
+      toast.error("error");
     }
-
-    // console.log(data, "data from create");
-    // console.log(data.stakePercentBuyer.toString(), "stake");
-
-    // const provider = new ethers.providers.Web3Provider(window.ethereum);
-    // const signer = provider.getSigner();
-
-    // const agreementContract = new ethers.Contract(
-    //   AgreementAddress,
-    //   AgreementContractAbi,
-    //   signer
-    // );
-
-    // let txn;
-
-    // try {
-    //   const formattedPrice = ethers.utils.parseEther(data.price.toString());
-    //   txn = await agreementContract.agreementCreate(
-    //     data.buyerAddress,
-    //     data.sellerAddress,
-    //     formattedPrice,
-    //     data.stakePercentBuyer.toString(),
-    //     data.stakePercentSeller.toString(),
-    //     data.title,
-    //     data.description
-    //   );
-    //   await txn.wait();
-
-    //   console.log(txn, "transaction");
-    //   toast.success("success");
-    //   setLoading(false);
-    //   handleClose();
-    // } catch (err) {
-    //   setLoading(false);
-    //   console.log(err);
-    //   toast.error("error");
-    // }
   };
 
   return (

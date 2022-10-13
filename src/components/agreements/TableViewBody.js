@@ -101,7 +101,7 @@ function TableViewBody(props) {
       await txn.wait();
       const data = {
         to: props.currentAccount,
-        message: `You stacked ${stake} MATIC Successfully!`,
+        message: `You stacked ${stake} KLAY Successfully!`,
       };
       await sendNotifications(data);
       toast.success("Successfully stake amount!", { position: "bottom-right" });
@@ -286,7 +286,7 @@ function TableViewBody(props) {
                     {contractState.description}
                   </Typography>
                   <Typography variant="h6" gutterBottom component="h2">
-                    Total Amount: {contractState.price} MATIC
+                    Total Amount: {contractState.price} KLAY
                   </Typography>
                 </Stack>
                 <Stack

@@ -26,7 +26,8 @@ export const ProfileView = () => {
           }}
         >
           <Avatar
-            src={user.attributes.Avatar != undefined ? user.attributes.Avatar.url :''}
+            src={user && user?.attributes?.Avatar?._url ? user?.attributes?.Avatar?._url : '' }
+            alt={user && user?.attributes?.username}
             sx={{
               height: 64,
               mb: 2,
@@ -38,7 +39,7 @@ export const ProfileView = () => {
             gutterBottom
             variant="h5"
           >
-            @{user && user.attributes.username}
+            @{user && user?.attributes?.username}
           </Typography>
           <Typography
             color="textSecondary"
@@ -66,16 +67,7 @@ export const ProfileView = () => {
           </Typography>
         </Box>
       </CardContent>
-      <Divider />
-      <CardActions>
-        <Button
-          color="primary"
-          fullWidth
-          variant="text"
-        >
-          Upload picture
-        </Button>
-      </CardActions>
+      <Divider /> 
     </Card>
   );
 } 
