@@ -13,7 +13,7 @@ export default function LendingFooter() {
 
         <div className="connect-footer"  > 
           <div className="" style={{ paddingRight: "2vw" }}>
-            <a href="https://twitter.com/TrustifiedNet" target="_blank" style={{ fontSize: "30px", color: "#6b46c1" }}>
+            <a href="https://twitter.com/" target="_blank" style={{ fontSize: "30px", color: "#6b46c1" }}>
               <BsTwitter />
             </a>
           </div>
