@@ -81,7 +81,7 @@ export default function Lending() {
       </div> */}
       {/* ========================================================================= */}
 
-      <div className="container mt-5 mb-5">
+      {/* <div className="container mt-5 mb-5">
         <div className="row">
           <div className="col-12 mt-5">
             <p className="network pt-4">How it works?</p>
@@ -109,7 +109,7 @@ export default function Lending() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div
         className="container-fluid mt-5 mb-5 "
