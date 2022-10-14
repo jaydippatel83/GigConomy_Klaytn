@@ -104,11 +104,10 @@ function Invoices() {
 
   async function setData() {
     setLoading(true);
-    const invoicedata = await JSON.parse(JSON.stringify(data));
+    const invoicedata = await JSON.parse(JSON.stringify(data)); 
     const d =
       data &&
-      invoicedata.filter((inv) => inv.name == user?.attributes.username);
-    console.log(data);
+      invoicedata.filter((inv) => inv.name == user?.attributes.username); 
     data && setInvoices(d);
     setLoading(false);
   }
@@ -169,8 +168,7 @@ function Invoices() {
                         <h5>No invoices created yet!</h5>
                       </TableCell>
                     </TableRow>
-                  )}
-                  {console.log(invoices, "invoices")}
+                  )} 
                   {invoices &&
                     invoices.map((invoice) => (
                       <TableRow>

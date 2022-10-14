@@ -51,11 +51,15 @@ const useStyles = makeStyles({
     borderRadius: "0px 15px 15px 20px",
     background: "#eee",
     padding: "10px",
+    width: "fit-content",
+    float:'left'
   },
   recieveMsgBox: {
     borderRadius: "20px 15px 0 15px",
     background: "aliceblue",
     padding: "10px",
+    width: "fit-content",
+    float:'right'
   },
 });
 
@@ -242,7 +246,7 @@ function ChatBox() {
                             ></ListItemText>
                           </Grid>
                           <Grid item xs={12}>
-                            <ListItemText
+                            <ListItemText 
                               align={
                                 handleId == msg.reciever &&
                                 user.id == msg.sender.objectId

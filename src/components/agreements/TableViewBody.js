@@ -130,7 +130,7 @@ function TableViewBody(props) {
       setLoading(false);
     } catch (err) {
       setLoading(false);
-      toast.error(err.data.message, { position: "bottom-right" });
+      toast.error(err, { position: "bottom-right" });
       console.log(err);
     }
   };
@@ -148,7 +148,7 @@ function TableViewBody(props) {
       setCanLoading(false);
     } catch (err) {
       setCanLoading(false);
-      toast.error(err.data.message, { position: "bottom-right" });
+      toast.error(err, { position: "bottom-right" });
     }
   };
 
@@ -164,7 +164,7 @@ function TableViewBody(props) {
       });
       setLoading(false);
     } catch (err) {
-      toast.error(err.data.message, { position: "bottom-right" });
+      toast.error(err, { position: "bottom-right" });
       setLoading(false);
       console.log(err);
     }
@@ -182,7 +182,7 @@ function TableViewBody(props) {
       });
       setLoading(false);
     } catch (err) {
-      toast.error(err.data.message, { position: "bottom-right" });
+      toast.error(err, { position: "bottom-right" });
       setLoading(false);
       console.log(err);
     }

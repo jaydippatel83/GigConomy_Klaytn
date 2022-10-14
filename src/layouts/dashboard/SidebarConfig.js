@@ -16,11 +16,11 @@ const sidebarConfig = [
     path: "/dashboard/send-request",
     icon: getIcon("fluent:wallet-credit-card-24-filled"),
   },
-  {
-    title: "Subscriptions",
-    path: "/dashboard/subscriptions",
-    icon: getIcon("uil:invoice"),
-  },
+  // {
+  //   title: "Subscriptions",
+  //   path: "/dashboard/subscriptions",
+  //   icon: getIcon("uil:invoice"),
+  // },
   {
     title: "product & Services",
     path: "/dashboard/products",

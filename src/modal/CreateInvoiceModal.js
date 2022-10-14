@@ -51,19 +51,7 @@ function CreateInvoiceModal(props) {
     setType(event.target.value);
   };
 
-  window.ethereum.enable();
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const signer = provider.getSigner();
-  const priceFeed = new ethers.Contract(
-    chainLinkPriceFeed,
-    chainlinkABI,
-    signer
-  );
-  const randomNumberCon = new ethers.Contract(
-    RandomNumberGeneratorContract,
-    chainlinkVRFABI.abi,
-    signer
-  );
+
 
   // async function caller() {
   //   await randomNumberCon.getRandomNumber(1000);
@@ -74,11 +62,11 @@ function CreateInvoiceModal(props) {
   // }
 
   useEffect(() => {
-    getPrice();
+    // getPrice();
   }, [selectedToken]);
 
-  async function getPrice() { 
-    if (selectedToken == "MATIC") {
+  async function getPrice() {
+    if (selectedToken == "KLAY") {
       let [price, decimals] = await priceFeed.getLatestPriceForMatic();
       price = Number(price / Math.pow(10, decimals)).toFixed(2);
       setUsdValue(price);
@@ -91,6 +79,13 @@ function CreateInvoiceModal(props) {
 
   const Invoice = Moralis.Object.extend("invoice");
   const invoice = new Invoice();
+
+  function getRandomIntInclusive(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);  
+  }
+
 
   const formik = useFormik({
     initialValues: {
@@ -109,13 +104,13 @@ function CreateInvoiceModal(props) {
       note: "",
     },
 
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values, { resetForm }) => {  
       try {
-        await randomNumberCon.getRandomNumber(1000);
-        const randNo = await randomNumberCon.getRandom();
+ 
+        var randomnumber = getRandomIntInclusive(0,1000); 
         setLoading(true);
         const formData = {
-          invoiceNumber: parseInt(randNo._hex, 16),
+          invoiceNumber: randomnumber,
           created: values.cdate,
           dueDate: values.ddate,
           description: values.description,
@@ -129,6 +124,7 @@ function CreateInvoiceModal(props) {
           taxPercentage: values.taxPercentage,
           note: values.note,
         };
+        console.log(formData, "formData");
         const files = makeFileObjects(formData);
         await storage(files, formData);
         props.setIsUpdated(!props.isUpdated);
@@ -173,7 +169,7 @@ function CreateInvoiceModal(props) {
 
     const files = [new File([blob], "Invoice_Details.json")];
     return files;
-  } 
+  }
 
   async function storage(files, formData) {
     // const client = makeStorageClient();
