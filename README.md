@@ -16,7 +16,7 @@
 
 **⭓ Klaytn:**
 
-https://github.com/GigConomy/GigConomy/blob/master/Klaytn.md 
+[https://github.com/GigConomy/GigConomy/blob/master/Klaytn.md](https://github.com/jaydippatel83/GigConomy_Klaytn/blob/master/Klaytn.md) 
 
 **Challenges we have faced:** When we started building, we had so many ideas for features and functionalities to implement in GigConomy. We had too many ideas like we can build a freelancing platform, we can build a review system for businesses and so on. As a startup we knew that too many features or trying to cover too many use cases at once will confuse the users and implemented minimum possible features to solve one use case.
 
