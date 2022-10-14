@@ -6,7 +6,7 @@ https://github.com/GigConomy/GigConomy/blob/master/src/sections/%40dashboard/app
 
 ```
 const data = await Moralis.Plugins.covalent.getLogEventsByContractAddress({
-        chainId: 80001,
+        chainId: 1001,
         contractAddress: AgreementAddress,
       });
 ```

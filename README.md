@@ -14,9 +14,9 @@
 
 ## List of Bounties implemented:
 
-**⭓ Polygon:**
+**⭓ Klaytn:**
 
-https://github.com/GigConomy/GigConomy/blob/master/polygon.md
+https://github.com/GigConomy/GigConomy/blob/master/Klaytn.md
 
 **⚫ Spheron:** We have used Spheron Decentralized cloud to host our Dapp using Pinta storage integration of Spheron.
 

@@ -9,6 +9,10 @@ module.exports = {
       url: `https://polygon-mumbai.g.alchemy.com/v2/${process.env.REACT_APP_ALCHEMY_KEY}`,
       accounts: [process.env.REACT_APP_PRIVATE_KEY],
     },
+    klaytn: { 
+      url: "https://api.baobab.klaytn.net:8651", 
+      accounts: [process.env.REACT_APP_PRIVATE_KEY], 
+    },
   },
 
   solidity: {
@@ -21,3 +25,5 @@ module.exports = {
     },
   },
 };
+
+
